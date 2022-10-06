@@ -17,9 +17,9 @@ export const MainTheme: Theme = {
   colors: COLORS,
   button: {
     fontSize: {
-      small: '16px',
+      small: '12px',
       medium: '18px',
-      large: '21px',
+      large: '24px',
     },
     padding: {
       small: '8px 16px',

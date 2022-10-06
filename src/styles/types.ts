@@ -27,3 +27,10 @@ export interface Theme {
 export interface Colors {
   [key: string]: string
 }
+export interface BreakpointValues {
+  [key: string]: number
+}
+
+export interface Devices {
+  [key: string]: string
+}
