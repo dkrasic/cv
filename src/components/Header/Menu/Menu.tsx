@@ -8,7 +8,7 @@ import { MenuItem } from './MenuItem'
 
 // ** Props **
 interface MenuItemListProps {
-  hidden: boolean
+  isExpandedOnMobile: boolean
 }
 
 // ** Styles **
@@ -27,7 +27,7 @@ const MenuItemList = styled.ol<MenuItemListProps>`
     position: absolute;
     top: var(--menu-icon-height);
     right: 0;
-    opacity: ${props => (props.hidden ? '0' : '1')};
+    opacity: ${props => (props.isExpandedOnMobile ? '1' : '0')};
     transition: opacity 0.25s;
     padding: 0.5rem;
     background-color: ${props => props.theme.colors.darkGrey};
@@ -36,8 +36,8 @@ const MenuItemList = styled.ol<MenuItemListProps>`
 
 // ** Components **
 export const Menu = () => {
-  const [isExpanded, setIsExpanded] = useState(false)
   const { mobile } = useDevice()
+  const [isExpanded, setIsExpanded] = useState(false)
 
   const menuItems: MenuItemType[] = [
     { href: '/about-me', text: 'About Me' },
@@ -48,7 +48,7 @@ export const Menu = () => {
   return (
     <MenuWrapper>
       <nav>
-        <MenuItemList hidden={mobile && !isExpanded}>
+        <MenuItemList isExpandedOnMobile={isExpanded}>
           {menuItems.map(({ href, text }, index) => (
             <MenuItem href={href} key={index}>
               {text}

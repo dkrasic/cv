@@ -1,8 +1,10 @@
 import styled, { ThemeProvider } from 'styled-components'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Header } from './components/Header'
 import { DEVICE } from './styles/breakpoints'
 import GlobalStyles from './styles/GlobalStyles'
 import { MainTheme } from './styles/theme'
+import { AboutMe, Contact, Home, Projects } from './pages'
 
 // ** Styles **
 const Wrapper = styled.div`
@@ -26,10 +28,19 @@ const Content = styled.div`
 // ** Components **
 const App = () => (
   <ThemeProvider theme={MainTheme}>
-    <Wrapper>
-      <Header />
-      <Content>I am the content</Content>
-    </Wrapper>
+    <Router>
+      <Wrapper>
+        <Header />
+        <Content>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-me" element={<AboutMe />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Content>
+      </Wrapper>
+    </Router>
     <GlobalStyles />
   </ThemeProvider>
 )
