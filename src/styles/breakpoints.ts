@@ -8,4 +8,5 @@ export const BREAKPOINT_VALUES: BreakpointValues = {
 export const DEVICE: Devices = {
   mobile: `(max-width: ${BREAKPOINT_VALUES.mobile}px)`,
   tablet: `(max-width: ${BREAKPOINT_VALUES.tablet}px)`,
+  tabletAndUp: `(min-width: ${BREAKPOINT_VALUES.mobile + 1}px)`,
 }
