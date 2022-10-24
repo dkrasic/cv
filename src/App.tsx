@@ -17,6 +17,8 @@ const Content = styled.div`
   min-height: 200vh; // to be changed
   width: 60%;
   margin: auto;
+  padding: 2rem 1rem;
+  background-color: ${props => props.theme.usedColors.contentBackground};
 
   border: 1px solid red; // to be changed
 

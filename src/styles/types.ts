@@ -5,6 +5,7 @@ export interface Theme {
     large: string
   }
   colors: Colors
+  usedColors: Colors
   button: {
     fontSize: {
       small: string

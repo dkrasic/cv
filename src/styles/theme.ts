@@ -15,6 +15,9 @@ export const MainTheme: Theme = {
     large: '20px',
   },
   colors: COLORS,
+  usedColors: {
+    contentBackground: COLORS.darkGrey,
+  },
   button: {
     fontSize: {
       small: '12px',
