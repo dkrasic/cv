@@ -5,7 +5,7 @@ export const Home = () => {
     <>
       <TextWithTooltip
         text="Enmacc"
-        tooltipText="Something that Danilo was doing at Enmacc. Something that Danilo was doing at Enmacc. Something that Danilo was doing at Enmacc. Something that Danilo was doing at Enmacc. Something that Danilo was doing at Enmacc. Something that Danilo was doing at Enmacc. Something that Danilo was doing at Enmacc."
+        tooltipText="Something that Danilo was doing at Enmacc. Something that Danilo was doing at Enmacc. "
       ></TextWithTooltip>
     </>
   )

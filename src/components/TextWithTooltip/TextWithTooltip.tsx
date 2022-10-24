@@ -68,10 +68,12 @@ const Entrance = styled.div<Pick<TextWithTooltipProps, 'tooltipPosition'>>`
 
 const TooltipTextWrapper = styled.div<Pick<TextWithTooltipProps, 'tooltipPosition'>>`
   --border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.5rem;
   border-color: ${props => props.theme.colors.orangeYellow};
-  max-height: 300px;
-  overflow: auto;
+  height: 120px;
   background-color: ${props => props.theme.usedColors.contentBackground};
   color: ${props => props.theme.colors.orangeYellow};
   text-align: center;
@@ -88,10 +90,6 @@ const TooltipTextWrapper = styled.div<Pick<TextWithTooltipProps, 'tooltipPositio
           border-bottom-right-radius: var(--border-radius);`}
 `
 
-const TooltipText = styled.span`
-  margin-bottom: 0.75rem;
-`
-
 // ** Components **
 export const TextWithTooltip: FC<TextWithTooltipProps> = ({
   text,
@@ -105,9 +103,7 @@ export const TextWithTooltip: FC<TextWithTooltipProps> = ({
       <Text onClick={() => setIsTooltipVisible(!isTooltipVisible)}>{text}</Text>
       <TooltipWrapper tooltipPosition={tooltipPosition} isTooltipVisible={isTooltipVisible}>
         {tooltipPosition === 'right' && <Entrance tooltipPosition={tooltipPosition} />}
-        <TooltipTextWrapper tooltipPosition={tooltipPosition}>
-          <TooltipText>{tooltipText}</TooltipText>
-        </TooltipTextWrapper>
+        <TooltipTextWrapper tooltipPosition={tooltipPosition}>{tooltipText}</TooltipTextWrapper>
         {tooltipPosition === 'left' && <Entrance tooltipPosition={tooltipPosition} />}
       </TooltipWrapper>
     </TextWithTooltipWrapper>
