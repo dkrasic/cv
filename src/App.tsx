@@ -20,8 +20,6 @@ const Content = styled.div`
   padding: 2rem 1rem;
   background-color: ${props => props.theme.usedColors.contentBackground};
 
-  border: 1px solid red; // to be changed
-
   @media ${DEVICE.mobile} {
     width: 100%;
   }

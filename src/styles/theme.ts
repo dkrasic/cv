@@ -10,9 +10,9 @@ const COLORS: Colors = {
 
 export const MainTheme: Theme = {
   fontSize: {
-    small: '12px',
-    medium: '16px',
-    large: '20px',
+    small: '0.75rem',
+    medium: '1rem',
+    large: '1.25rem',
   },
   colors: COLORS,
   usedColors: {
@@ -20,14 +20,14 @@ export const MainTheme: Theme = {
   },
   button: {
     fontSize: {
-      small: '12px',
-      medium: '18px',
-      large: '24px',
+      small: '0.75rem',
+      medium: '1rem',
+      large: '1.5rem',
     },
     padding: {
-      small: '8px 16px',
-      medium: '16px 24px',
-      large: '20px 36px',
+      small: '0.5rem 1rem',
+      medium: '1rem 1.5rem',
+      large: '1.25rem 2rem',
     },
     borderRadius: {
       small: '2px',
