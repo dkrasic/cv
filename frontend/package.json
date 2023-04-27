@@ -6,7 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "prepare": "husky install",
+    "prepare": "cd .. && husky install frontend/.husky",
     "prettier": "prettier src -c",
     "lint": "eslint src --color",
     "lint-staged": "lint-staged --config lint-staged.js"

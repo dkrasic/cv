@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
-import { Experience } from '../../GraphQL/types'
+import { Experience } from './types'
 
 // ** Styles **
 const ExperienceItemWrapper = styled.div`
