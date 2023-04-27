@@ -25,7 +25,7 @@ const Description = styled.p`
   margin-top: 0.5rem;
 `
 
-const Content = styled.p`
+const Content = styled.div`
   font-size: ${props => props.theme.fontSize.medium};
   color: white;
   margin-top: 1rem;
