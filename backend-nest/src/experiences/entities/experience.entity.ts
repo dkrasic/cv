@@ -1,8 +1,28 @@
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Position } from './position.entity';
+import { Project } from './project.entity';
+
+@Entity()
 export class Experience {
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
   companyName: string;
-  // positions: Position[];
-  // projects: Project[];
+
+  @OneToMany(() => Position, (position) => position.experience, {
+    cascade: true,
+  })
+  positions: Position[];
+
+  @OneToMany(() => Project, (project) => project.experience, {
+    cascade: true,
+  })
+  projects: Project[];
+
+  @Column()
   startDate: Date;
-  endDate: Date | 'present';
+
+  @Column()
+  endDate?: Date;
 }

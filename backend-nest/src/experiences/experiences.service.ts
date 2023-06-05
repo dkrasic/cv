@@ -1,23 +1,49 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
+import { Repository } from 'typeorm';
+import {
+  CreateExperienceDto,
+  PositionDto,
+  ProjectDto,
+} from './dto/create-experience.dto';
+import { UpdateExperienceDto } from './dto/update-experience.dto';
 import { Experience } from './entities/experience.entity';
+import { Position } from './entities/position.entity';
+import { Project } from './entities/project.entity';
 
 @Injectable()
 export class ExperiencesService {
-  private experiences: Experience[] = [
-    {
-      id: '1',
-      companyName: 'Netlight GmbH',
-      startDate: new Date('01/07/2021'),
-      endDate: 'present',
-    },
-  ];
+  constructor(
+    @InjectRepository(Experience)
+    private readonly experienceRepository: Repository<Experience>,
+    @InjectRepository(Position)
+    private readonly positionRepository: Repository<Position>,
+    @InjectRepository(Project)
+    private readonly projectRepository: Repository<Project>,
+  ) {}
 
-  findAll() {
-    return this.experiences;
+  findAll(paginationQuery: PaginationQueryDto) {
+    const { limit, offset } = paginationQuery;
+
+    return this.experienceRepository.find({
+      relations: {
+        positions: true,
+        projects: true,
+      },
+      skip: offset,
+      take: limit,
+    });
   }
 
-  findOne(id: string) {
-    const experience = this.experiences.find((item) => item.id === id);
+  async findOne(id: string) {
+    const experience = await this.experienceRepository.findOne({
+      where: { id: +id },
+      relations: {
+        positions: true,
+        projects: true,
+      },
+    });
     if (!experience) {
       throw new NotFoundException(`Experience #${id} was not found.`);
     }
@@ -25,25 +51,78 @@ export class ExperiencesService {
     return experience;
   }
 
-  create(createExperienceDto: any) {
-    this.experiences.push(createExperienceDto);
-    return createExperienceDto;
+  async create(createExperienceDto: CreateExperienceDto) {
+    const newExperience = this.experienceRepository.create(createExperienceDto);
+    return this.experienceRepository.save(newExperience);
   }
 
-  update(id: string, updateExperienceDto: any) {
-    const existingExperience = this.findOne(id);
-    if (existingExperience) {
-      // update
+  async update(id: string, updateExperienceDto: UpdateExperienceDto) {
+    const positions =
+      updateExperienceDto.positions &&
+      (await Promise.all(
+        updateExperienceDto.positions.map((position) =>
+          this.preloadPosition(position),
+        ),
+      ));
+
+    const projects =
+      updateExperienceDto.projects &&
+      (await Promise.all(
+        updateExperienceDto.projects.map((project) =>
+          this.preloadProject(project),
+        ),
+      ));
+    const experience = await this.experienceRepository.preload({
+      id: +id,
+      ...updateExperienceDto,
+      positions,
+      projects,
+    });
+
+    if (!experience) {
+      throw new NotFoundException(`Experience #${id} was not found.`);
     }
+
+    return this.experienceRepository.save(experience);
   }
 
-  remove(id: string) {
-    const experienceIndex = this.experiences.findIndex(
-      (item) => item.id === id,
-    );
+  async remove(id: string) {
+    const experience = await this.findOne(id);
+    return this.experienceRepository.remove(experience);
+  }
 
-    if (experienceIndex >= 0) {
-      this.experiences.splice(experienceIndex, 1);
+  private async preloadPosition(position: PositionDto): Promise<Position> {
+    const existingPosition = await this.positionRepository.findOne({
+      where: {
+        title: position.title,
+      },
+    });
+
+    if (existingPosition) {
+      return {
+        ...existingPosition,
+        ...position,
+      };
     }
+
+    return this.positionRepository.create(position);
+  }
+
+  private async preloadProject(project: ProjectDto): Promise<Project> {
+    const existingProject = await this.projectRepository.findOne({
+      where: {
+        client: project.client,
+        title: project.title,
+      },
+    });
+
+    if (existingProject) {
+      return {
+        ...existingProject,
+        ...project,
+      };
+    }
+
+    return this.projectRepository.create(project);
   }
 }

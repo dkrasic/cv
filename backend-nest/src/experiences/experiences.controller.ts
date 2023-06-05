@@ -8,18 +8,20 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
 import { ExperiencesService } from './experiences.service';
 
+@ApiTags('Experiences')
 @Controller('experiences')
 export class ExperiencesController {
   constructor(private readonly experiencesService: ExperiencesService) {}
 
   @Get()
-  findAll(@Query() paginationQuery) {
-    // const { limit, offset } = paginationQuery;
-    return this.experiencesService.findAll();
+  findAll(@Query() paginationQuery: PaginationQueryDto) {
+    return this.experiencesService.findAll(paginationQuery);
   }
 
   @Get(':id')
