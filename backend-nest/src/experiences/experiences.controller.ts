@@ -29,6 +29,8 @@ export class ExperiencesController {
 
   @Post()
   create(@Body() createExperienceDto: CreateExperienceDto) {
+    console.log('[controller] createExperienceDto: ', createExperienceDto);
+
     return this.experiencesService.create(createExperienceDto);
   }
 
