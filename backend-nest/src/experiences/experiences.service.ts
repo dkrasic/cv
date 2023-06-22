@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query/pagination-query.dto';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
 import { Experience } from './entities/experience.entity';
@@ -12,8 +13,9 @@ export class ExperiencesService {
     private readonly experienceModel: Model<Experience>,
   ) {}
 
-  findAll() {
-    return this.experienceModel.find().exec();
+  findAll(paginationQuery: PaginationQueryDto) {
+    const { limit, offset } = paginationQuery;
+    return this.experienceModel.find().skip(offset).limit(limit).exec();
   }
 
   async findOne(id: string) {

@@ -1,37 +1,11 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsString } from 'class-validator';
-
-export class CreateExperienceDto {
-  @IsString()
-  readonly companyName: string;
-
-  readonly positions: Position[];
-  // readonly projects: Project[];
-
-  @IsDate()
-  @Type(() => Date)
-  readonly startDate: Date;
-
-  @IsDate()
-  @Type(() => Date)
-  readonly endDate: Date;
-}
-
-export class Position {
-  @IsString()
-  readonly title: string;
-
-  @IsString()
-  readonly description: string;
-
-  @IsDate()
-  @Type(() => Date)
-  readonly startDate: Date;
-
-  @IsDate()
-  @Type(() => Date)
-  readonly endDate: Date;
-}
+import {
+  IsDate,
+  IsEnum,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 
 export enum TechStack {
   JAVASCRIPT = 'JavaScript',
@@ -50,6 +24,7 @@ export enum TechStack {
   NGRX = 'NgRx',
   JEST = 'Jest',
   KARMA = 'Karma',
+  JASMINE = 'Jasmine',
   CYPRESS = 'Cypress',
   WEBDRIVERIO = 'WebDriverIO',
   AVA = 'AVA',
@@ -58,4 +33,64 @@ export enum TechStack {
   NESTJS = 'NestJS',
   PHP = 'PHP',
   REDUX = 'Redux',
+  WEBSOCKETS = 'WebSockets',
+  GRAPHQL = 'GraphQL',
+}
+
+export class CreateExperienceDto {
+  @IsString()
+  readonly companyName: string;
+
+  @ValidateNested({ each: true })
+  positions: PositionDto[];
+
+  @ValidateNested({ each: true })
+  projects: ProjectDto[];
+
+  @IsDate()
+  @Type(() => Date)
+  readonly startDate: Date;
+
+  @IsDate()
+  @IsOptional()
+  readonly endDate?: Date;
+
+  @IsEnum(TechStack, { each: true })
+  @IsOptional()
+  readonly techStack?: TechStack[];
+}
+
+export class PositionDto {
+  @IsString()
+  readonly title: string;
+
+  @IsString()
+  readonly description: string;
+
+  @IsDate()
+  readonly startDate: Date;
+
+  @IsDate()
+  @IsOptional()
+  readonly endDate?: Date;
+}
+
+export class ProjectDto {
+  @IsString()
+  readonly client: string;
+
+  @IsString()
+  readonly title: string;
+
+  @IsString()
+  readonly description: string;
+
+  @IsDate()
+  readonly startDate: Date;
+
+  @IsDate()
+  readonly endDate?: Date;
+
+  @IsEnum(TechStack, { each: true })
+  readonly techStack: TechStack[];
 }

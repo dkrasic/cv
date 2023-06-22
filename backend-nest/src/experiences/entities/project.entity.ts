@@ -1,4 +1,4 @@
-import { Schema, Prop } from '@nestjs/mongoose';
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 import { TechStack } from '../dto/create-experience.dto';
@@ -20,6 +20,8 @@ export class Project extends Document {
   @Prop()
   endDate?: Date;
 
-  @Prop([TechStack])
+  @Prop([{ type: String, enum: TechStack }])
   techStack: TechStack[];
 }
+
+export const ProjectSchema = SchemaFactory.createForClass(Project);

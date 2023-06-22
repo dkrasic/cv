@@ -8,6 +8,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query/pagination-query.dto';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
 import { ExperiencesService } from './experiences.service';
@@ -17,9 +18,8 @@ export class ExperiencesController {
   constructor(private readonly experiencesService: ExperiencesService) {}
 
   @Get()
-  findAll(@Query() paginationQuery) {
-    // const { limit, offset } = paginationQuery;
-    return this.experiencesService.findAll();
+  findAll(@Query() paginationQuery: PaginationQueryDto) {
+    return this.experiencesService.findAll(paginationQuery);
   }
 
   @Get(':id')
