@@ -1,23 +1,25 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query/pagination-query.dto';
+import { CreateExperienceDto } from './dto/create-experience.dto';
+import { UpdateExperienceDto } from './dto/update-experience.dto';
 import { Experience } from './entities/experience.entity';
 
 @Injectable()
 export class ExperiencesService {
-  private experiences: Experience[] = [
-    {
-      id: '1',
-      companyName: 'Netlight GmbH',
-      startDate: new Date('01/07/2021'),
-      endDate: 'present',
-    },
-  ];
+  constructor(
+    @InjectModel(Experience.name)
+    private readonly experienceModel: Model<Experience>,
+  ) {}
 
-  findAll() {
-    return this.experiences;
+  findAll(paginationQuery: PaginationQueryDto) {
+    const { limit, offset } = paginationQuery;
+    return this.experienceModel.find().skip(offset).limit(limit).exec();
   }
 
-  findOne(id: string) {
-    const experience = this.experiences.find((item) => item.id === id);
+  async findOne(id: string) {
+    const experience = await this.experienceModel.findOne({ _id: id }).exec();
     if (!experience) {
       throw new NotFoundException(`Experience #${id} was not found.`);
     }
@@ -25,25 +27,29 @@ export class ExperiencesService {
     return experience;
   }
 
-  create(createExperienceDto: any) {
-    this.experiences.push(createExperienceDto);
-    return createExperienceDto;
+  create(createExperienceDto: CreateExperienceDto) {
+    console.log('[service] createExperienceDto: ', createExperienceDto);
+    const experience = new this.experienceModel(createExperienceDto);
+    return experience.save();
   }
 
-  update(id: string, updateExperienceDto: any) {
-    const existingExperience = this.findOne(id);
-    if (existingExperience) {
-      // update
+  async update(id: string, updateExperienceDto: UpdateExperienceDto) {
+    const existingExperience = await this.experienceModel
+      .findOneAndUpdate(
+        { _id: id },
+        { $set: updateExperienceDto },
+        { new: true },
+      )
+      .exec();
+
+    if (!existingExperience) {
+      throw new NotFoundException(`Experience #${id} was not found.`);
     }
+    return existingExperience;
   }
 
-  remove(id: string) {
-    const experienceIndex = this.experiences.findIndex(
-      (item) => item.id === id,
-    );
-
-    if (experienceIndex >= 0) {
-      this.experiences.splice(experienceIndex, 1);
-    }
+  async remove(id: string) {
+    const experience = await this.findOne(id);
+    return experience.deleteOne();
   }
 }

@@ -9,8 +9,11 @@ async function bootstrap() {
       whitelist: true, // removes sent props that are not expected
       forbidNonWhitelisted: true, // informs the client with an error message that unexpected data is sent
       transform: true, // tries to transform the payload from client into DTO instance
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     }),
   );
-  await app.listen(3000);
+  await app.listen(4000);
 }
 bootstrap();
