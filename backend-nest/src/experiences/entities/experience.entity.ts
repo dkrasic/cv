@@ -1,8 +1,29 @@
-export class Experience {
-  id: string;
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+import { Project, ProjectSchema } from './project.entity';
+import { Position, PositionSchema } from './position.entity';
+import { TechStack } from '../dto/create-experience.dto';
+
+@Schema()
+export class Experience extends Document {
+  @Prop()
   companyName: string;
-  // positions: Position[];
-  // projects: Project[];
+
+  @Prop({ type: [PositionSchema], default: [] })
+  positions: Position[];
+
+  @Prop({ type: [ProjectSchema], default: [] })
+  projects: Project[];
+
+  @Prop()
   startDate: Date;
-  endDate: Date | 'present';
+
+  @Prop()
+  endDate?: Date;
+
+  @Prop([{ type: String, enum: TechStack, default: [] }])
+  techStack?: TechStack[];
 }
+
+export const ExperienceSchema = SchemaFactory.createForClass(Experience);

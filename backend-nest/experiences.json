@@ -1,0 +1,139 @@
+[
+  {
+    "companyName": "Netlight GmbH",
+    "startDate": "07/01/2021",
+    "positions": [
+      {
+        "title": "Software Engineering Consultant",
+        "description": "",
+        "startDate": "07/01/2021",
+        "endDate": "06/30/2023"
+      },
+      {
+        "title": "Senior Software Engineering Consultant",
+        "description": "",
+        "startDate": "07/01/2023"
+      }
+    ],
+    "projects": [
+      {
+        "client": "Electronics retail company",
+        "title": "Frontend developer",
+        "description": "I was part of a senior front-end team responsible for tracking user activity, managing consent, and generating business reports for decision-makers. I was involved in the implementation of three separate projects:\n<ul><li>Development of a new consent management tool</li><li>Creation of a standalone library for enhancing tracking events</li><li>Creation of end-to-end tests for both tracking events and the consent management tool</li></ul>\n\nWorking at this electronics retail company allowed me to gain valuable experience in implementing complex solutions within a fast-paced, large-scale environment.",
+        "startDate": "07/01/2021",
+        "endDate": "02/01/2022",
+
+        "techStack": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "HTML",
+          "CSS",
+          "SCSS",
+          "StyledComponents",
+          "Jest",
+          "Cypress",
+          "WebDriverIO",
+          "RxJS",
+          "NxJS",
+          "GraphQL"
+        ]
+      },
+      {
+        "client": "Online travel booking platform",
+        "title": "Software Engineer",
+        "description": "I was part of a team that drove the development of an initiative for self-service features. Our goal was to reduce the number of customer requests via mail or phone by developing self-service features for post-booking requests. My role was to evaluate the business impact and technical feasibility of feature suggestions, and to develop technical solutions that connect customers, customer service centers, and tour operators. I led the front-end implementation of the self-service features, working closely with different teams across multiple services and front-ends. Through effective collaboration and teamwork, we were successfully delivering self-service features that improved customer experience and reduced the workload for the customer service team.",
+        "startDate": "05/01/2022",
+        "endDate": "09/17/2022",
+        "techStack": [
+          "JavaScript",
+          "HyperScript",
+          "React",
+          "HTML",
+          "CSS",
+          "Glamorous",
+          "EmotionJS",
+          "SCSS",
+          "StyledComponents",
+          "AVA",
+          "RxJS",
+          "NxJS",
+          "GraphQL"
+        ]
+      }
+    ]
+  },
+  {
+    "companyName": "Enmacc GmbH",
+    "startDate": "10/16/2017",
+    "endDate": "06/30/2018",
+    "positions": [
+      {
+        "title": "Frontend developer",
+        "description": "During my time at Enmacc, I was part of an agile team that focused on developing a web-based platform for energy trading. As a Front-end developer, I used TypeScript and Angular 4+, along with other popular technologies like HTML, CSS, SCSS, RxJS, NgRx, and Jasmine. One of the significant features of the Enmacc platform was the dashboard, which provided all users with an overview of the prices of different kinds of energy. We used web sockets technology to display real-time data to the end user. This project helped me gain proficiency in state management and reactive programming in Angular.",
+        "startDate": "10/16/2017",
+        "endDate": "06/30/2018"
+      }
+    ],
+    "techStack": [
+      "JavaScript",
+      "TypeScript",
+      "Angular",
+      "HTML",
+      "CSS",
+      "SCSS",
+      "Karma",
+      "Jasmine",
+      "RxJS",
+      "NgRx",
+      "WebSockets"
+    ]
+  },
+  {
+    "companyName": "Insparx GmbH",
+    "startDate": "07/01/2018",
+    "endDate": "06/30/2019",
+    "positions": [
+      {
+        "title": "Frontend developer",
+        "description": "During my time at Insparx GmbH, I worked as a front-end developer on online dating applications such as Be2, C-Date, Academic Singles, Singles50, and NewHoney. Using Vanilla JavaScript, TypeScript, Angular 6+, and jQuery, I worked on both desktop and mobile versions of the applications, ensuring a high-quality user experience with brand-specific logic implementation. I participated in the full cycle development process and collaborated with other team members, such as developers, product managers, designers, and testers.",
+        "startDate": "07/01/2018",
+        "endDate": "06/30/2019"
+      }
+    ],
+    "techStack": [
+      "JavaScript",
+      "Angular",
+      "HTML",
+      "CSS",
+      "SCSS",
+      "Karma",
+      "Jasmine"
+    ]
+  },
+  {
+    "companyName": "TeleClinic GmbH",
+    "startDate": "07/01/2019",
+    "endDate": "06/30/2021",
+    "positions": [
+      {
+        "title": "Frontend developer",
+        "description": "During my time at TeleClinic, I had several tasks that required my attention and expertise. These tasks included: First, refactoring the core part of the doctor application. I took over the entire front-end architecture and led the transition from the old to the new view. I developed a solution in collaboration with product management and communicated closely with doctors to collect early feedback and prepare end-users for the big change in the software. Second, greenfield project for telemedical assistance tool in Zendesk. I led the front-end implementation, enriching the default Zendesk functionality with custom applications. These applications were added using iFrames and were living under the common monorepository. Third, the pilot project for public e-prescriptions (GERDA). GERDA was designed to digitize the entire public prescription flow in a specific region (Baden-Württemberg): from issuing a prescription to receiving it, on a mobile application, and redeeming it in a local pharmacy. In my role, I managed the project from the beginning of the implementation to testing and release, including the implementation of the medication database coming from an external library.\n\nOverall, I continuously improved the products by tracking technical insufficiencies and monitoring their performance. I worked closely with UI/UX designers, product managers, and other developers. In my role, I helped the company to provide accessible, high-quality healthcare services to doctors and healthcare providers and played a key role in the growth-led strategy.",
+        "startDate": "07/01/2019",
+        "endDate": "06/30/2021"
+      }
+    ],
+    "techStack": [
+      "JavaScript",
+      "Angular",
+      "React",
+      "HTML",
+      "CSS",
+      "SCSS",
+      "StyledComponents",
+      "Jest",
+      "RxJS",
+      "NxJS"
+    ]
+  }
+]
