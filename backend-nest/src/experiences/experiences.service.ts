@@ -28,7 +28,6 @@ export class ExperiencesService {
   }
 
   create(createExperienceDto: CreateExperienceDto) {
-    console.log('[service] createExperienceDto: ', createExperienceDto);
     const experience = new this.experienceModel(createExperienceDto);
     return experience.save();
   }
