@@ -8,7 +8,7 @@ import { ExperiencesModule } from './experiences/experiences.module';
 @Module({
   imports: [
     ExperiencesModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/cv-database'),
+    MongooseModule.forRoot('mongodb://db:27017/cv-database'),
   ],
   controllers: [AppController],
   providers: [AppService],

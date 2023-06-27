@@ -1,0 +1,49 @@
+version: "3"
+services:
+  db:
+    image: mongo
+    container_name: cv_db
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_DATABASE: cv-database
+    networks:
+      - cv-app
+    volumes:
+      - data:/data/db
+  backend:
+    build: ./backend-nest
+    container_name: backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend-nest:/app
+      - /app/node_modules
+    networks:
+      - cv-app
+    depends_on:
+      - db
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    # stdin_open and tty are used for starting the container in an interactive mode
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+    volumes:
+      # we want to map/mirror ./frontend folder on our computer to the ./app folder in the container
+      # in this way we can observe the changes that are made in ./frontend and they will be reflected in the container
+      - ./frontend:/app
+      # we want to specify that node_modules changes should not be observed
+      - /app/node_modules
+    networks:
+      - cv-app
+    depends_on:
+      - backend
+networks:
+  cv-app:
+    driver: bridge
+volumes:
+  data:
+    driver: local
