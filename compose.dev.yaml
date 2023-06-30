@@ -12,7 +12,9 @@ services:
     volumes:
       - data:/data/db
   backend:
-    build: ./backend-nest
+    build:
+      context: ./backend-nest
+      dockerfile: Dockerfile.dev
     container_name: backend
     ports:
       - "4000:4000"
@@ -24,7 +26,9 @@ services:
     depends_on:
       - db
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
     container_name: frontend
     # stdin_open and tty are used for starting the container in an interactive mode
     stdin_open: true

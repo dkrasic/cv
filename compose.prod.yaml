@@ -1,0 +1,41 @@
+version: "3"
+services:
+  db:
+    image: mongo
+    container_name: cv_db
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_DATABASE: cv-database
+    networks:
+      - cv-app
+    volumes:
+      - data:/data/db
+  backend:
+    build:
+      context: ./backend-nest
+      dockerfile: Dockerfile.prod
+    container_name: backend
+    ports:
+      - "4000:4000"
+    networks:
+      - cv-app
+    depends_on:
+      - db
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - cv-app
+    depends_on:
+      - backend
+networks:
+  cv-app:
+    driver: bridge
+volumes:
+  data:
+    driver: local
