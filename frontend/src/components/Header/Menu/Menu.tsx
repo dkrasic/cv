@@ -43,6 +43,7 @@ export const Menu = () => {
     { href: '/about-me', text: 'About Me' },
     { href: '/projects', text: 'Projects' },
     { href: '/contact', text: 'Contact' },
+    { href: '/admin', text: 'Admin' },
   ]
 
   return (

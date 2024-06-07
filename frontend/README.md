@@ -31,4 +31,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Linting
 
-We define linting in `package.json`. In `rules` you can define additional rules that will be applied to all `.js(x)` and `.ts(x)` files. However in overrides we can specify the rules that will only be applied to `.ts(x)` files.
+We define linting in `.eslintrc.json`. In `rules` you can define additional rules that will be applied to all `.js(x)` and `.ts(x)` files. However in overrides we can specify the rules that will only be applied to `.ts(x)` files.

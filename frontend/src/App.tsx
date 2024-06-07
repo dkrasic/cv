@@ -5,6 +5,7 @@ import { DEVICE } from './styles/breakpoints'
 import GlobalStyles from './styles/GlobalStyles'
 import { MainTheme } from './styles/theme'
 import { AboutMe, Contact, Home, Projects } from './pages'
+import { Admin } from './pages/Admin'
 
 // ** Styles **
 const Wrapper = styled.div`
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/about-me" element={<AboutMe />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </Content>
       </Wrapper>

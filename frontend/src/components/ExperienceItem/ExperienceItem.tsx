@@ -24,11 +24,6 @@ const CompanyName = styled.span`
   font-weight: bold;
   font-size: ${props => props.theme.fontSize.medium};
   color: ${props => props.theme.colors.deepOrange};
-  /* darkGrey: '#393939',
-  lightGrey: '#6E6E6E',
-  deepOrange: '#FF5A09',
-  lightOrange: '#F38435',
-  orangeYellow: '#FF9900', */
 `
 
 const Subtitle = styled.span`
