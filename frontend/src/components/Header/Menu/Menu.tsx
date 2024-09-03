@@ -51,9 +51,7 @@ export const Menu = () => {
       <nav>
         <MenuItemList isExpandedOnMobile={isExpanded}>
           {menuItems.map(({ href, text }, index) => (
-            <MenuItem href={href} key={index}>
-              {text}
-            </MenuItem>
+            <MenuItem key={index} href={href} text={text}></MenuItem>
           ))}
         </MenuItemList>
       </nav>

@@ -1,13 +1,7 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, LinkProps } from '../../Link'
 import styled from 'styled-components'
 import { DEVICE } from '../../../styles/breakpoints'
-
-// ** Props **
-interface MenuItemProps {
-  children: any
-  href: string
-}
 
 // ** Styles **
 const ItemWrapper = styled.li`
@@ -40,22 +34,11 @@ const ItemWrapper = styled.li`
   }
 `
 
-const ItemLink = styled(Link)`
-  text-decoration: none;
-  white-space: nowrap;
-  color: ${props => props.theme.colors.orangeYellow};
-  font-size: ${props => props.theme.fontSize.medium};
-
-  &:hover {
-    text-decoration: revert;
-  }
-`
-
 // ** Components **
-export const MenuItem: FC<MenuItemProps> = ({ href, children }) => {
+export const MenuItem: FC<LinkProps> = ({ href, text }) => {
   return (
     <ItemWrapper>
-      <ItemLink to={href}>{children}</ItemLink>
+      <Link href={href} text={text}></Link>
     </ItemWrapper>
   )
 }
