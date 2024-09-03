@@ -8,8 +8,9 @@ import {
   FormListItem,
   Input,
   InputWrapper,
+  NestedFormTitle,
   NestedFormWrapper,
-} from '../../../styles/form'
+} from '../../../styles/common'
 import { AddPositionForm } from '../AddPosition/AddPosition'
 import { useState } from 'react'
 import { Position } from '../../ExperienceItem/types'
@@ -22,6 +23,7 @@ export const AddExperienceForm = () => {
     getValues,
   } = useForm()
 
+  const [isPositionFormVisible, setIsPositionFormVisible] = useState(false)
   const [positions, setPositions] = useState<Position[]>([])
 
   const addExperience = (data: FieldValues) => {
@@ -76,7 +78,8 @@ export const AddExperienceForm = () => {
       </InputWrapper>
 
       <NestedFormWrapper>
-        {positions.length && (
+        <NestedFormTitle>Positions</NestedFormTitle>
+        {positions.length > 0 && (
           <FormList>
             {positions.map(position => (
               <FormListItem>
@@ -87,9 +90,14 @@ export const AddExperienceForm = () => {
           </FormList>
         )}
 
-        <AddPositionForm
-          handleSubmitInParent={(position: Position) => setPositions([...positions, position])}
-        />
+        {isPositionFormVisible && (
+          <AddPositionForm
+            handleSubmitInParent={(position: Position) => setPositions([...positions, position])}
+          />
+        )}
+        {!isPositionFormVisible && (
+          <Button onClick={() => setIsPositionFormVisible(true)}>+</Button>
+        )}
       </NestedFormWrapper>
 
       <Button type="submit" disabled={isSubmitting}>
