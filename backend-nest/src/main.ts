@@ -14,6 +14,14 @@ async function bootstrap() {
       },
     }),
   );
+
+  if (process.env.APP_ENV !== 'production') {
+    app.enableCors({
+      allowedHeaders: ['content-type'],
+      origin: 'http://localhost:3000',
+      credentials: true,
+    });
+  }
   await app.listen(4000);
 }
 bootstrap();

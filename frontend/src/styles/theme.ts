@@ -6,7 +6,6 @@ const COLORS: Colors = {
   deepOrange: '#FF5A09',
   lightOrange: '#F38435',
   orangeYellow: '#FF9900',
-  salmon: 'salmon',
 }
 
 export const MainTheme: Theme = {

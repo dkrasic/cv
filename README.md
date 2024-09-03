@@ -6,7 +6,7 @@ In `compose.yaml` we have defined our services, volumes and their dependancies. 
 
 ```shell
 # Navigate to the root and run the following command
-docker-compose up
+docker-compose -f compose.dev.yaml up
 ```
 
 ### Killing the app:
