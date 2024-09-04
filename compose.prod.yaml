@@ -13,7 +13,7 @@ services:
       - data:/data/db
   backend:
     build:
-      context: ./backend-nest
+      context: ./backend
       dockerfile: Dockerfile.prod
     container_name: backend
     ports:

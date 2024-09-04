@@ -1,6 +1,6 @@
 ## Docker
 
-In `compose.yaml` we have defined our services, volumes and their dependancies. Each repository (`./frontend` and `./backend-nest`) have their own `Dockerfile` and `.dockerignore` files.
+In `compose.yaml` we have defined our services, volumes and their dependancies. Each repository (`./frontend` and `./backend`) have their own `Dockerfile` and `.dockerignore` files.
 
 ### Starting the app:
 

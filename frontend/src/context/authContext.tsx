@@ -15,7 +15,7 @@ export type Credentials = {
 
 export type AuthContextType = {
   user?: User
-  onLogin: (credentials: Credentials, redirectUrl?: string) => Promise<void>
+  onLogin: (credentials: Credentials, redirectTo?: string) => Promise<void>
   onLogout: () => void
 }
 
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: { children: any }) => {
 
   const navigate = useNavigate()
 
-  const onLogin = async (credentials: Credentials, redirectUrl: string = '/'): Promise<void> => {
+  const onLogin = async (credentials: Credentials, redirectTo: string = '/'): Promise<void> => {
     try {
       const response = await fetch('http://localhost:4000/auth/login', {
         method: 'POST',
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }: { children: any }) => {
       if (res) {
         setCookie('user', JSON.stringify(res), 30)
         setUser(user)
-        navigate(redirectUrl)
+        navigate(redirectTo)
         return
       }
 

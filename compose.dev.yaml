@@ -13,13 +13,13 @@ services:
       - data:/data/db
   backend:
     build:
-      context: ./backend-nest
+      context: ./backend
       dockerfile: Dockerfile.dev
     container_name: backend
     ports:
       - "4000:4000"
     volumes:
-      - ./backend-nest:/app
+      - ./backend:/app
       - /app/node_modules
     networks:
       - cv-app
