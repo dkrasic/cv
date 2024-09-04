@@ -4,8 +4,10 @@ import { Header } from './components/Header'
 import { DEVICE } from './styles/breakpoints'
 import GlobalStyles from './styles/GlobalStyles'
 import { MainTheme } from './styles/theme'
-import { AboutMe, Contact, Home, Projects } from './pages'
+import { AboutMe, Contact, Home, Login, Projects } from './pages'
 import { Admin } from './pages/Admin'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import { AuthProvider } from './context/authContext'
 
 // ** Styles **
 const Wrapper = styled.div`
@@ -30,18 +32,23 @@ const Content = styled.div`
 const App = () => (
   <ThemeProvider theme={MainTheme}>
     <Router>
-      <Wrapper>
-        <Header />
-        <Content>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about-me" element={<AboutMe />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-        </Content>
-      </Wrapper>
+      <AuthProvider>
+        <Wrapper>
+          <Header />
+          <Content>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about-me" element={<AboutMe />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route element={<PrivateRoute />}>
+                <Route path="/admin" element={<Admin />} />
+              </Route>
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </Content>
+        </Wrapper>
+      </AuthProvider>
     </Router>
     <GlobalStyles />
   </ThemeProvider>

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { Menu } from './Menu'
+import { Avatar } from '../Avatar'
+import { useAuth } from '../../context/authContext'
 
 // ** Styles **
 const Wrapper = styled.div`
@@ -25,10 +27,13 @@ const Title = styled.span`
 
 // ** Components **
 export const Header = () => {
+  const { user } = useAuth()
+
   return (
     <Wrapper>
       <Title>Danilo Krasić</Title>
       <Menu />
+      {user && <Avatar name={user.name} email={user.email}></Avatar>}
     </Wrapper>
   )
 }
