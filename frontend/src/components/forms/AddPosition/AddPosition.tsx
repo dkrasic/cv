@@ -1,6 +1,6 @@
 import { FieldValues, useForm } from 'react-hook-form'
 import { getMillisFromDateString } from '../../../utils'
-import { Button, ErrorMessage, Form, Input, InputWrapper } from '../../../styles/form'
+import { Button, ErrorMessage, Form, Input, InputWrapper } from '../../../styles/common'
 import { Position } from '../../ExperienceItem/types'
 
 // ** Props **

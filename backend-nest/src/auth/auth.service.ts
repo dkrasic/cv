@@ -12,7 +12,6 @@ export class AuthService {
 
   async signIn(email: string, pass: string): Promise<Partial<User>> {
     const user = await this.usersService.findOne(email);
-    console.log('[AuthService] user: ', user);
 
     if (user?.password !== pass) {
       throw new UnauthorizedException('Invalid credentials');
