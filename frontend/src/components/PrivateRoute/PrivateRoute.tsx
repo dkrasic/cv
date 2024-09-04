@@ -1,9 +1,13 @@
-import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from '../../context/authContext'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
+import { getCookie } from '../../utils'
 
 const PrivateRoute = () => {
-  const { user } = useAuth()
-  if (!user?.accessToken) return <Navigate to="/login" />
+  const userCookie = getCookie('user')
+  const user = userCookie && JSON.parse(userCookie)
+
+  const { pathname } = useLocation()
+
+  if (!user?.accessToken) return <Navigate to={`/login?redirectTo=${pathname}`} />
   return <Outlet />
 }
 
