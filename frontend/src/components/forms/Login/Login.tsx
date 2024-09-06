@@ -37,6 +37,10 @@ export const Login = () => {
           placeholder="Email"
           {...register('email', {
             required: 'Email is required.',
+            pattern: {
+              value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+              message: 'Email format is invalid.',
+            },
           })}
         />
         {errors.username && <ErrorMessage>{`${errors.username.message}`}</ErrorMessage>}
@@ -44,7 +48,7 @@ export const Login = () => {
 
       <InputWrapper>
         <Input
-          type="text"
+          type="password"
           required
           placeholder="Password"
           {...register('password', {

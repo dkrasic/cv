@@ -1,5 +1,5 @@
 import { Section } from '../components/Section'
-import { AddExperienceForm } from '../components/forms'
+import { AddExperienceForm, AddUserForm } from '../components/forms'
 
 export const Admin = () => {
   return (
@@ -12,6 +12,10 @@ export const Admin = () => {
 
       <Section title="Add Experience">
         <AddExperienceForm />
+      </Section>
+
+      <Section title="Add user">
+        <AddUserForm />
       </Section>
     </div>
   )
