@@ -3,6 +3,7 @@ import { Button, ErrorMessage, Form, Input, InputWrapper } from '../../../styles
 import styled from 'styled-components'
 import { useAuth } from '../../../context/authContext'
 import { useSearchParams } from 'react-router-dom'
+import { validation } from '../validation'
 
 const LoginForm = styled(Form)`
   width: 50%;
@@ -31,18 +32,7 @@ export const Login = () => {
   return (
     <LoginForm onSubmit={handleSubmit(submitCredentials)}>
       <InputWrapper>
-        <Input
-          type="text"
-          required
-          placeholder="Email"
-          {...register('email', {
-            required: 'Email is required.',
-            pattern: {
-              value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-              message: 'Email format is invalid.',
-            },
-          })}
-        />
+        <Input type="text" required placeholder="Email" {...register('email', validation.email)} />
         {errors.username && <ErrorMessage>{`${errors.username.message}`}</ErrorMessage>}
       </InputWrapper>
 
@@ -51,18 +41,7 @@ export const Login = () => {
           type="password"
           required
           placeholder="Password"
-          {...register('password', {
-            required: 'Password is required.',
-            minLength: {
-              value: 8,
-              message: 'Password must have at least 8 characters.',
-            },
-            pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
-              message:
-                'Password must contain at least one uppercase and lowercase letter and a number.',
-            },
-          })}
+          {...register('password', validation.password)}
         />
         {errors.password && <ErrorMessage>{`${errors.password.message}`}</ErrorMessage>}
       </InputWrapper>
